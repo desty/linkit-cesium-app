@@ -1,0 +1,7 @@
+{
+  "name": "linkit-cesium-app",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "^4.11.2"
+  }
+}

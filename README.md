@@ -1,5 +1,6 @@
 # linkit-cesium-app
 링크잇 ( http://linkit.kr ) 에서 개발중인 Cesium ( http://cesiumjs.org ) 을 활용한 3D GIS web application 입니다.
+우리나라 지도는 브이월드 ( http://map.vworld.kr ) 를 사용하였습니다.
 
 Cesium 을 비롯한 많은 오픈소스 소프트웨어를 사용하여 개발되고 있으며 활용시 각 소프트웨어의 라이센스를 따르시면 됩니다.
 그 이외에 링크잇에서 직접 개발한 코드들은 라이센스가 따로 없으며 자유롭게 수정/복사/재배포 하셔도 됩니다.

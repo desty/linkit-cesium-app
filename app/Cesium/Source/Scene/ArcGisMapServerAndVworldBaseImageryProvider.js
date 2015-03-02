@@ -220,7 +220,7 @@ define('Scene/ArcGisMapServerAndVworldBaseImageryProvider',[
       (level == 17 && (x >= 107520 && x <= 114688) && (y >= 47104 && y <= 54016)) ||
       (level == 18 && (x >= 215040 && x <= 229376) && (y >= 94208 && y <= 108032))
     ) {
-      url = '//xdworld.vworld.kr:8080/2d/Base/201310/' + level + '/' + x + '/' + y + '.png';
+      url = '//xdworld.vworld.kr:8080/2d/Base/201411/' + level + '/' + x + '/' + y + '.png';
       //console.log(url);
     }
     // vworld customizing 끝

@@ -23,7 +23,7 @@ node_modules
 bower_components
 
 # Build files
-build
+/build
 templates.js
 
 #webstorm

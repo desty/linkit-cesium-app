@@ -40,9 +40,9 @@ function MainCtrl() {
   });
   viewer.terrainProvider = terrainProvider;
 
-  // 제주도로 이동
+  // 우리나라로 이동
   viewer.camera.flyTo({
-    destination : Cesium.Cartesian3.fromDegrees(126.5235, 33.3218, 10000.0),
+    destination : Cesium.Cartesian3.fromDegrees(127.5235, 30.3218, 300000.0),
     orientation : {
       heading : Cesium.Math.toRadians(0.0),
       pitch : Cesium.Math.toRadians(-30.0),

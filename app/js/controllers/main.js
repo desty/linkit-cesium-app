@@ -5,10 +5,12 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function MainCtrl() {
+function MainCtrl($scope) {
 
   // ViewModel
   var vm = this;
+
+  vm.showPlacename = true;
 
   var viewer = new Cesium.Viewer('cesiumContainer', {
     timeline : false,
@@ -30,7 +32,7 @@ function MainCtrl() {
 
   // 브이월드 hybrid 레이어 추가
   var layers = viewer.scene.imageryLayers;
-  layers.addImageryProvider(new Cesium.ArcGisMapServerAndVworldHybridImageryProvider({
+  var hybridLayer = layers.addImageryProvider(new Cesium.ArcGisMapServerAndVworldHybridImageryProvider({
     url: '//services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer'
   }));
 
@@ -47,6 +49,15 @@ function MainCtrl() {
       heading : Cesium.Math.toRadians(0.0),
       pitch : Cesium.Math.toRadians(-30.0),
       roll : 0.0
+    }
+  });
+
+  // 지명/도로 보이기/가리기
+  $scope.$watch('home.showPlacename', function(newVal, oldVal) {
+    if (newVal) {
+      hybridLayer.alpha = 1;
+    } else {
+      hybridLayer.alpha = 0;
     }
   });
 

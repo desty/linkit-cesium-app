@@ -29,6 +29,25 @@ body,
   list-style: none;
 }
 
+.toggle-placename {
+  position: absolute;
+  top: 100px;
+  left: 30px;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 13px;
+  z-index: 1000;
+}
+
+.toggle-placename label {
+  cursor: pointer;
+}
+
+.toggle-placename input {
+  vertical-align: -3px;
+}
+
 .github-ribbon {
   position: absolute;
   top: 0;

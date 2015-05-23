@@ -55,3 +55,18 @@ body,
   border: 0;
   z-index: 1000;
 }
+
+.map-info {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 13px;
+  z-index: 1000;
+}
+
+.map-info a {
+  color: inherit;
+}

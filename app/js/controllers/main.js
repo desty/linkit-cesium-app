@@ -38,7 +38,7 @@ function MainCtrl($scope) {
 
   // terrain 설정
   var terrainProvider = new Cesium.CesiumTerrainProvider({
-    url : '//cesiumjs.org/tilesets/terrain/smallterrain'
+    url : '//assets.agi.com/stk-terrain/world'
   });
   viewer.terrainProvider = terrainProvider;
 

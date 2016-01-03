@@ -10,10 +10,10 @@ function MainCtrl($scope) {
   // ViewModel
   var vm = this;
 
-  vm.showPlacename = true;
+  vm.showPlacename = false;
 
   var viewer = new Cesium.Viewer('cesiumContainer', {
-    timeline : false,
+    //timeline : false,
     animation : false,
     baseLayerPicker : false,
     fullscreenButton: false,
@@ -60,6 +60,80 @@ function MainCtrl($scope) {
       hybridLayer.alpha = 0;
     }
   });
+
+  // 지정한 위치로 이동
+  vm.goLonLat = function(lon, lat) {
+    viewer.camera.flyTo({
+      destination : Cesium.Cartesian3.fromDegrees(lon, lat, 30000.0)
+    });
+  };
+
+  // 비행기 띄우기 - http://cesiumjs.org/Cesium/Apps/Sandcastle/index.html?src=Interpolation.html&label=Showcases
+  Cesium.Math.setRandomNumberSeed(3);
+
+  var start = Cesium.JulianDate.fromDate(new Date(2015, 2, 25, 16));
+  var stop = Cesium.JulianDate.addSeconds(start, 360, new Cesium.JulianDate());
+
+  viewer.clock.startTime = start.clone();
+  viewer.clock.stopTime = stop.clone();
+  viewer.clock.currentTime = start.clone();
+  viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP;
+  viewer.clock.multiplier = 3;
+
+  viewer.timeline.zoomTo(start, stop);
+
+  function computeCircularFlight(lon, lat, radius) {
+    var property = new Cesium.SampledPositionProperty();
+    for (var i = 0; i <= 360; i += 45) {
+      var radians = Cesium.Math.toRadians(i);
+      var time = Cesium.JulianDate.addSeconds(start, i, new Cesium.JulianDate());
+      var position = Cesium.Cartesian3.fromDegrees(lon + (radius * 1.5 * Math.cos(radians)), lat + (radius * Math.sin(radians)), Cesium.Math.nextRandomNumber() * 500 + 750);
+      property.addSample(time, position);
+
+      viewer.entities.add({
+        position: position,
+        point: {
+          pixelSize: 8,
+          color: Cesium.Color.TRANSPARENT,
+          outlineColor: Cesium.Color.TRANSPARENT,
+          outlineWidth: 3
+        }
+      });
+    }
+    return property;
+  }
+
+  var position = computeCircularFlight(127.008205, 37.691351, 0.03);
+
+  var entity = viewer.entities.add({
+    availability: new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+      start: start,
+      stop: stop
+    })]),
+
+    position: position,
+
+    orientation: new Cesium.VelocityOrientationProperty(position),
+
+    model: {
+      uri: 'http://cesiumjs.org/Cesium/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+      minimumPixelSize: 64
+    },
+
+    path: {
+      resolution: 1,
+      material: new Cesium.PolylineGlowMaterialProperty({
+        glowPower: 0.1,
+        color: Cesium.Color.TRANSPARENT
+      }),
+      width: 10
+    }
+  });
+
+  // 비행기 시점으로 전환
+  setTimeout(function() {
+    viewer.trackedEntity = entity;
+  }, 10000);
 
 }
 

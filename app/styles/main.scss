@@ -48,6 +48,36 @@ body,
   vertical-align: -3px;
 }
 
+.go-parks {
+  position: absolute;
+  top: 160px;
+  left: 30px;
+  margin: 0;
+  padding: 0;
+  z-index: 1000;
+}
+
+.go-parks ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.go-parks li {
+  margin-bottom: 3px;
+}
+
+.go-parks button {
+  font-size: 12px;
+  border: 1px solid #aaa;
+  background-color: #eee;
+  color: #000;
+  font-family: 'Malgun Gothic';
+  height: 25px;
+  lihe-height: 23px;
+  cursor: pointer;
+}
+
 .github-ribbon {
   position: absolute;
   top: 0;
@@ -58,7 +88,7 @@ body,
 
 .map-info {
   position: absolute;
-  bottom: 30px;
+  bottom: 60px;
   left: 30px;
   margin: 0;
   padding: 0;
